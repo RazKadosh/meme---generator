@@ -1,0 +1,22 @@
+
+.main-header {
+    box-shadow: 0px 1px 0px #DBDBDB;
+    background-color: var(--clr2);
+    color: var(--clr1);
+}
+
+.main-header .main-nav a {
+    color: var(--clr4);
+    text-decoration: none;
+    transition: box-shadow 0.4s;
+}
+
+.main-header .main-nav .nav-link:hover {
+    color: var(--clr0);
+}
+
+.main-header .main-nav a.active {
+    color: var(--clr0);
+    cursor: default;
+    font-weight: bold;
+}

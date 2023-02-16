@@ -34,29 +34,27 @@ function renderMeme() {
     }
 }
 
+
 function onUpdateText(ev) {
     setLineTxt(ev.target.value)
+    console.log(ev.target.value)
     renderMeme()
 }
-
 
 function onUpdateFillColor(ev) {
     setFillColor(ev.target.value)
     renderMeme()
 }
 
-
 function onUpdateStrokeColor(ev) {
     setStrokeColor(ev.target.value)
     renderMeme()
 }
  
-
 function onIncreaseFontSize() {
     setFontSize(+1)
     renderMeme()
 }
-
 
 function onDecreaseFontSize() {
     setFontSize(-1)
@@ -64,16 +62,14 @@ function onDecreaseFontSize() {
 }
 
 function onMoveUpLine() {
-    setMoveLine(-2)
+    setMoveLine(-20)
     renderMeme()
 }
-
 
 function onMoveDownLine() {
-    setMoveLine(2)
+    setMoveLine(20)
     renderMeme()
 }
-
 
 function onAddLine() {
     addLine()
@@ -85,4 +81,8 @@ function onSwitchLines() {
     renderMeme()
 }
 
+function onChangeAlign(align) {
+    changeAlign(align)
+    renderMeme()
+}
 

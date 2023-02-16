@@ -1,0 +1,16 @@
+:root {
+    /* pallette */
+
+    /* brand color */
+    --clr0: #FF9826;
+    /* text color */
+    --clr1: #989898;
+    /* background color */
+    --clr2: #FFFFFF;
+    /* form background */
+    --clr3: #F8F8F8;
+    /* edit text lines title color */
+    --clr4: #727272;
+    /* search-color */
+    --clr5: #E5E5E5;
+}

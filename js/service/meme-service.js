@@ -1,11 +1,5 @@
 'use strict'
 
-var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
-
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['angry', 'politics'] },
-{ id: 1, url: 'img/2.jpg', keywords: ['dog', 'cute'] }
-]
-
 var gMeme = {
   selectedImgId: 2,
   selectedImgUrl: 'img/2.jpg',
@@ -25,7 +19,6 @@ var gMeme = {
   ]
 }
 
-
 function getMeme() {
   return gMeme
 }
@@ -34,22 +27,18 @@ function getImgs() {
   return gImgs
 }
 
-
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
-  gMeme.selectedImgUrl = `img/memes/${imgId}.jpg`
+  gMeme.selectedImgUrl = `img/${imgId}.jpg`
 }
-
 
 function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-
 function setFillColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].color = color
 }
-
 
 function setStrokeColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
@@ -67,11 +56,9 @@ function setMoveLine(num) {
   gMeme.lines[gMeme.selectedLineIdx].posY += num
 }
 
-
 function setFontFamily(font) {
   gMeme.lines[gMeme.selectedLineIdx].font = font
 }
-
 
 function addLine() {
   const linesCount = gMeme.lines.length
@@ -98,7 +85,7 @@ function addLine() {
       strokeColor: '#000000',
       align: 'center',
       posX: gElCanvas.width / 2,
-      posY: gElCanvas.height - 150,
+      posY: gElCanvas.height - 200,
     }
   }
 
@@ -108,7 +95,15 @@ function addLine() {
 
 function switchLines() {
   if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
-
   else gMeme.selectedLineIdx++
 }
 
+function changeAlign(align) {
+  gMeme.lines[gMeme.selectedLineIdx].align = align
+
+  if (align === 'left') var x = gElCanvas.width / 25
+  if (align === 'center') var x = gElCanvas.width / 2
+  if (align === 'right') var x = gElCanvas.width - gElCanvas.width / 25
+
+  gMeme.lines[gMeme.selectedLineIdx].posX = x
+}

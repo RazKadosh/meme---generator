@@ -1,8 +1,11 @@
+/* setup */
+@import 'setup/vars.css';
+@import 'setup/typography.css';
 
-*{
-    box-sizing: border-box;
-}
+/* base */
+@import 'basic/base.css';
+@import 'basic/helpers.css';
 
-#canvas{
-    background-color: aqua;
-}
+/* components */
+@import 'components/header.css';
+@import 'components/logo.css';
