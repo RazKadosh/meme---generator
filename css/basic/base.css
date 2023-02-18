@@ -1,9 +1,0 @@
-* {
-    box-sizing: border-box;
-}
-
-html {
-    color: var(--clr1);
-    font-family: lato, sans-serif;
-    line-height: 1.25;
-}

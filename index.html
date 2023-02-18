@@ -5,65 +5,145 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Memes Generator</title>
+<link rel="stylesheet" href="css/main.css">
+    <title>Meme Generator</title>
 </head>
 
-<body onload="onInit()" class="main-layout grid">
+<body onload="onInit()">
 
-    <header class="main-header flex space-between align-center full">
-       
-            <div class="logo">Meme-Generator</div>
-            <nav class="main-nav">
-                <ul class="main-menu flex clean-list">
-                    <li><a class="flex justify-center align-center" href="#"></a>Memes</li>
-                    <li><a class="flex justify-center align-center active" href="#"></a>Gallery</li>
-                    <li><a class="flex justify-center align-center" href="#"></a>About</li>
+    <div class="main-screen"></div>
+
+    <header class="main-header">
+
+        <section class="header-wrapper">
+
+            <div class="logo">Meme-Generator
+                <span> *Raz Kadosh</span>
+            </div>
+
+            <nav id="mainNav" class="main-nav-wrapper">
+
+                <ul class="main-nav-list">
+                    <li class="active"><a class=" nav-gallery">Gallery</a>
+                    <li><a>Memes</a>
+                    <li><a>About</a>
                 </ul>
+
             </nav>
+        </section>
     </header>
 
 
-    <section class="meme-gallery"></section>
-    <section class="meme-editor">
-
-        <div class="canvas-cintainer">
-            <canvas id="canvas" width="500" height="500"></canvas>
-        </div>
-        <input type="text" class="text-input" placeholder="Type text here.." oninput="onUpdateText(event)">
-
-        <button class="btn font-color-btn">
-            <input type="color" class="font-color-input" name="fillColor" oninput="onUpdateFillColor(event)">
-        </button>
-
-        <button class="btn font-stroke-color-btn">
-            <input type="color" class="font-stroke-color-input" name="fillColor" oninput="onUpdateStrokeColor(event)">
-        </button>
-
-        <button class="btn increase-font-btn" onclick="onIncreaseFontSize()">A+</button>
-
-        <button class="btn decrease-font-btn" onclick="onDecreaseFontSize()">A-</button>
-
-        <button class="btn switch-lines-btn" onclick="onSwitchLines()">⇅</button>
-
-        <button class="btn add-line-btn" onclick="onAddLine()">+</button>
-
-        <button class="btn up-line-btn" onclick="onMoveUpLine()">↑</button>
-
-        <button class="btn down-line-btn" onclick="onMoveDownLine()">↓</button>
-
-        <button class="btn aline-left-btn" onclick="onChangeAlign('left')">left</button>
-
-        <button class="btn aline-center-btn" onclick="onChangeAlign('center')">center</button>
-
-        <button class="btn aline-right-btn" onclick="onChangeAlign('right')">right</button>
-
+    <section class="meme-gallery">
     </section>
+
+
+    <section class="meme-editor hide">
+
+        <div class="canvas-container">
+
+            <canvas id="canvas" width="500" height="500"></canvas>
+
+            <div class="meme-editor-control">
+
+                <input type="text" class="text-line-input" placeholder="Type text here..." oninput="onUpdateText(event)">
+
+                <div class="meme-editor-btns">
+
+                    <select name="canvas-font" class="font-family-select">
+                        <option value="Impact">Impact</option>
+                        <option value="Calibri">Calibri</option>
+                        <option value="Lato-Regular">Lato</option>
+                    </select>
+
+                    <button class="font-color-btn">
+                        <input type="color" class="font-color-input" name="fillColor" oninput="onUpdateFillColor(event)">
+                        <i class="fa-solid fa-palette"></i>
+                    </button>
+
+                    <button class="font-stroke-color-btn">
+                        <input type="color" class="font-stroke-color-input" name="fillColor" oninput="onUpdateStrokeColor(event)">
+                        <i class="fa-solid fa-highlighter"></i>
+                    </button>
+
+                    <button class="increase-font-btn" onclick="onIncreaseFontSize()">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </button>
+
+                    <button class="decrease-font-btn" onclick="onDecreaseFontSize()">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    </button>
+
+                    <button class="aline-left-btn" onclick="onChangeAlign('left')">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+
+                    <button class="aline-center-btn" onclick="onChangeAlign('center')">
+                        <i class="fa-solid fa-align-justify"></i>
+                    </button>
+
+                    <button class="aline-right-btn" onclick="onChangeAlign('right')">
+                    <i class="fa-solid fa-align-right"></i>
+                    </button>
+
+                    <button class="up-line-btn" onclick="onMoveUpLine()">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+
+                    <button class="down-line-btn" onclick="onMoveDownLine()">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+
+                    <button class="add-line-btn" onclick="onAddLine()">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+
+                    <button class="delete-line-btn" onclick="onDeleteText()" >
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+
+                    <button class="switch-line-btn" onclick="onSwitchLines()">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+
+                </div>
+
+                <div class="meme-other-btn">
+
+                    <a href="#" onclick="downloadMeme(this)" download="my-meme">
+                        <button class="download-btn">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            Download
+                        </button>
+                    </a>
+
+                    <button class="upload-fb-btn" onclick="onShareOnFB()">
+                        <i class="fa-solid fa-share-nodes"></i> Share on <i class="fa-brands fa-facebook-f"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="main-footer">
+        <div class="logo">Meme Generator
+            <span> *Raz version</span>
+        </div>
+        <small> &#169; by
+            <a href="https://github.com/razkadosh" target=”_blank”>Raz Kadosh</a>
+            2023</small>
+    </footer>
+
 
     <script src="js/service/meme-service.js"></script>
     <script src="js/service/gallery-service.js"></script>
     <script src="js/controller/meme-controller.js"></script>
     <script src="js/controller/gallery-controller.js"></script>
+
+    <script src="https://kit.fontawesome.com/e03c62287d.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

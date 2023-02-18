@@ -23,15 +23,6 @@ function getMeme() {
   return gMeme
 }
 
-function getImgs() {
-  return gImgs
-}
-
-function setImg(imgId) {
-  gMeme.selectedImgId = imgId
-  gMeme.selectedImgUrl = `img/${imgId}.jpg`
-}
-
 function setLineTxt(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
@@ -93,6 +84,19 @@ function addLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
+function deleteLine() {
+  if (gMeme.lines.length === 1) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = ''
+    return
+  }
+
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+  gMeme.selectedLineIdx--
+
+  if (gMeme.selectedLineIdx < 0) gMeme.selectedLineIdx = 0
+
+}
+
 function switchLines() {
   if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
   else gMeme.selectedLineIdx++
@@ -106,4 +110,23 @@ function changeAlign(align) {
   if (align === 'right') var x = gElCanvas.width - gElCanvas.width / 25
 
   gMeme.lines[gMeme.selectedLineIdx].posX = x
+}
+
+function downloadMeme(elLink) {
+  const data = gElCanvas.toDataURL()
+  elLink.href = data
+}
+
+function doShareImg(imgDataUrl, onSuccess) {
+  const formData = new FormData()
+
+  formData.append('img', imgDataUrl)
+  console.log('formData:', formData)
+
+  fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
+      .then(res => res.text())
+      .then(url => {
+          console.log('url:', url)
+          onSuccess(url)
+      })
 }
