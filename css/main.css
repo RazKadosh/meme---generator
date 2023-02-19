@@ -1,11 +1,11 @@
 @font-face {
     font-family: lego;
-    src: url(/fonts/Lego.ttf);
+    src: url(../fonts/Lego.ttf);
 }
 
 @font-face {
     font-family: heineken;
-    src: url(/fonts/HEINEKEN.TTF);
+    src: url(../fonts/HEINEKEN.TTF);
 }
 
 :root {
@@ -242,7 +242,7 @@ input {
 .meme-other-btn a button:hover,
 .meme-other-btn button:hover,
 .font-family-select:hover {
-    background-color: var(--clr4);
+    background-color: var(--clr5);
     box-shadow: 0 1px 2px var(--clr3);
     transition: transform 1s ease;
 }
@@ -272,22 +272,13 @@ input {
     font-size: 1rem;
 }
 
-.main-footer .logo span {
-    font-size: 0.5rem;
-}
-
-small {
-    font-size: 0.5rem;
+small ,small a{
+    font-family: heineken;
+    font-size: 1rem;
     color: var(--clr0);
-}
-
-small a {
-    color: var(--clr0);
-    text-decoration: none;
-    cursor: pointer;
 }
 
 small a:hover {
-    color: var(--clr3);
+    color: var(--clr5);
     transition: transform 1s ease;
 }

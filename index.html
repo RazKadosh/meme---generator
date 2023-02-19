@@ -18,7 +18,7 @@
         <section class="header-wrapper">
 
             <div class="logo" onclick="onChangeTab()">Meme-Generator
-                <span> *Raz Kadosh</span>
+                <span>*Raz Kadosh</span>
             </div>
 
             <nav id="mainNav" class="main-nav-wrapper">
@@ -46,11 +46,11 @@
 
             <div class="meme-editor-control">
 
-                <input type="text" class="text-line-input" placeholder="Type text here..." oninput="onUpdateText(event)">
+                <input type="text" class="text-line-input" placeholder="Type text here..." oninput="onUpdateText(event,this.value)">
 
                 <div class="meme-editor-btns">
 
-                    <select name="canvas-font" class="font-family-select">
+                    <select name="canvas-font" class="font-family-select" onclick="onChangeFontFamily(value)">
                         <option value="Impact">Impact</option>
                         <option value="Calibri">Calibri</option>
                         <option value="Lato-Regular">Lato</option>
@@ -128,9 +128,7 @@
 
 
     <footer class="main-footer">
-        <div class="logo">Meme Generator
-            <span> *Raz version</span>
-        </div>
+        <div class="logo">Meme Generator</div>
         <small> &#169; by
             <a href="https://github.com/razkadosh" target=”_blank”>Raz Kadosh</a>
             2023</small>

@@ -30,9 +30,13 @@ function renderMeme() {
 
             gCtx.fillText(line.txt, line.posX, line.posY)
             gCtx.strokeText(line.txt, line.posX, line.posY)
+
+            line.txtWidth = gCtx.measureText(line.txt).width + 100
         })
+        markCurrLine()
     }
 }
+
 
 function onSetListeners() {
     const elTextInput = document.querySelector('.text-line-input')
@@ -46,10 +50,10 @@ function onSetListeners() {
 
     const elIncreaseFontBtn = document.querySelector('.increase-font-btn')
     elIncreaseFontBtn.addEventListener('click', onIncreaseFontSize)
-
+    
     const elDecreaseFontBtn = document.querySelector('.decrease-font-btn')
     elDecreaseFontBtn.addEventListener('click', onDecreaseFontSize)
-
+    
     const elAddLine = document.querySelector('.add-line-btn')
     elAddLine.addEventListener('click', onAddLine)
 
@@ -58,7 +62,7 @@ function onSetListeners() {
 
     const elSwitchLines = document.querySelector('.switch-line-btn')
     elSwitchLines.addEventListener('click', onSwitchLines)
-
+    
     const elUpLine = document.querySelector('.up-line-btn')
     elUpLine.addEventListener('click', onMoveUpLine)
 
@@ -87,7 +91,7 @@ function onSetListeners() {
 
     const elGalleryNav = document.querySelector('.nav-gallery')
     elGalleryNav.addEventListener('click', onChangeTab)
-
+    
     const elLogoNav = document.querySelector('.logo')
     elLogoNav.addEventListener('click', onChangeTab)
 }
@@ -107,7 +111,7 @@ function onUpdateStrokeColor(ev) {
     setStrokeColor(ev.target.value)
     renderMeme()
 }
- 
+
 function onIncreaseFontSize() {
     setFontSize(+1)
     renderMeme()
@@ -131,11 +135,19 @@ function onMoveDownLine() {
 function onAddLine() {
     addLine()
     renderMeme()
+    document.querySelector('.text-line-input').value = getSelectedLine().txt
 }
 
 function onSwitchLines() {
     switchLines()
     renderMeme()
+    document.querySelector('.text-line-input').value = getSelectedLine().txt
+}
+
+function onDeleteText() {
+    deleteLine()
+    renderMeme()
+    document.querySelector('.text-line-input').value = getSelectedLine().txt
 }
 
 function onChangeAlign(align) {
@@ -156,18 +168,31 @@ function onChangeFontFamily(font) {
 
 
 function onChangeTab() {
+    
     const elGalleryNav = document.querySelector('.nav-gallery')
     const elLogoNav = document.querySelector('.logo')
-    
-    if (elGalleryNav || elLogoNav){
+
+    if (elGalleryNav || elLogoNav) {
         const elEditor = document.querySelector('.meme-editor')
         elEditor.classList.add('hide')
 
         const elGallery = document.querySelector('.meme-gallery')
         elGallery.style.display = 'grid'
-
+        
         onInit()
     }
+}
+
+function markCurrLine() {
+    const line = getSelectedLine()
+    if (!line) return
+    const pos = {
+        x: line.posX - (line.txtWidth / 2),
+        y: line.posY - (line.size / 2 + 10),
+    }
+    gCtx.strokeStyle = 'white'
+    gCtx.lineWidth = 3
+    gCtx.strokeRect(pos.x, pos.y, line.txtWidth, line.size)
 }
 
 function onShareOnFB() {

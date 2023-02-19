@@ -47,6 +47,10 @@ function setMoveLine(num) {
   gMeme.lines[gMeme.selectedLineIdx].posY += num
 }
 
+function getSelectedLine(){
+return gMeme.lines[gMeme.selectedLineIdx]
+}
+
 function setFontFamily(font) {
   gMeme.lines[gMeme.selectedLineIdx].font = font
 }
